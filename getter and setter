@@ -1,0 +1,16 @@
+void main() {
+  student s = student();
+  s.AvarageMark = 420;
+  print(s.Mark);
+}
+
+class student {
+  int mark;
+  double avgMark;
+
+  void set AvarageMark(double a) {
+    avgMark = (a / 500) * 100;
+  }
+
+  double get Mark => avgMark;
+}
