@@ -1,3 +1,6 @@
+
+\\Ascending order......
+
 void main() {
   List<int> numbers = [5, 4, 20, 10, 8, 6, 2];
 
@@ -14,4 +17,29 @@ void main() {
 
     print(numbers);
   }
+}
+
+
+//Descending order....
+
+
+void main() {
+  List<int> numb = [5, 4, 20, 10, 8, 6, 2];
+
+  for(int i = 1; i< numb.length; i++){
+
+    int temp = numb[i];
+    int j = i-1;
+    
+    while( j>=0 && temp>numb[j] ){
+
+      numb[j+1] = numb[j];
+      j--;
+    }
+    numb[j+1]= temp;
+    print(numb);
+    
+  }
+ 
+  
 }
