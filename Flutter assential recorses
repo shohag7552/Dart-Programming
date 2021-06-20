@@ -1,0 +1,3 @@
+//Declear heighrt for listView Like this:
+
+height:  height: size.height * (0.109 * cartitemData.length),😊
