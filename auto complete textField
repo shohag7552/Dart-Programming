@@ -1,0 +1,46 @@
+Autocomplete<int>(
+                            optionsBuilder: (TextEditingValue value) {
+                              if(value.text.isEmpty) {
+                                return [0, 5, 10, 15, 20];
+                              }else {
+                                return [0, 5, 10, 15, 20].where((tip) => tip.toString().contains(value.text));
+                              }
+                            },
+                            onSelected: (int value) => orderController.addTips(value.toDouble()),
+                            fieldViewBuilder: (context, controller, node, onComplete) {
+                              _tipController = controller;
+                              return Container(
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).cardColor,
+                                  borderRadius: BorderRadius.circular(Dimensions.RADIUS_SMALL),
+                                  // boxShadow: [BoxShadow(color: Colors.grey[Get.isDarkMode ? 800 : 200], spreadRadius: 2, blurRadius: 5, offset: Offset(0, 5))],
+                                ),
+                                child: TextField(
+                                  controller: controller,
+                                  focusNode: node,
+                                  onChanged: (String value) {
+                                    if(value.isNotEmpty){
+                                      orderController.addTips(double.parse(value));
+                                    }else{
+                                      orderController.addTips(0.0);
+                                    }
+                                  },
+                                  maxLength: 10,
+                                  textInputAction: TextInputAction.done,
+                                  onEditingComplete: onComplete,
+                                  keyboardType: TextInputType.number,
+                                  inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9.]'))],
+                                  decoration: InputDecoration(
+                                    hintText: 'enter_amount'.tr,
+                                    counterText: '',
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(Dimensions.RADIUS_SMALL),
+                                      borderSide: BorderSide.none,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                            displayStringForOption: (value) => value.toString(),
+                          )
